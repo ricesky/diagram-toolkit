@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace DiagramToolkit
 {
-    public interface ICanvas
+    public interface IToolbarItem
     {
-        void SetActiveTool(ITool tool);
-        void Repaint();
+        String Name { get; set; }
     }
 }
