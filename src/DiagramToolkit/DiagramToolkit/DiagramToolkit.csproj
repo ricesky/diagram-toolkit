@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultMenubar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DefaultToolbar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -58,6 +61,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IconSet.resx</DependentUpon>
     </Compile>
+    <Compile Include="IMenubar.cs" />
+    <Compile Include="IMenuItem.cs" />
     <Compile Include="ITool.cs" />
     <Compile Include="IToolbar.cs" />
     <Compile Include="IToolbarItem.cs" />
@@ -67,6 +72,9 @@
     </Compile>
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuItems\DefaultMenuItem.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
