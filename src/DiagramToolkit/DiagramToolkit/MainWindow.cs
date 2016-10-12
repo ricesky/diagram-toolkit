@@ -75,6 +75,13 @@ namespace DiagramToolkit
 
             #endregion
 
+            #region Canvas
+            Debug.WriteLine("Loading canvas...");
+            this.canvas = new DefaultCanvas();
+            this.toolStripContainer1.ContentPanel.Controls.Add((Control)this.canvas);
+
+            #endregion
+
 
         }
 

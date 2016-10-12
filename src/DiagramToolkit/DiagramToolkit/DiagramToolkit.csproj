@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultCanvas.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DefaultMenubar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -56,6 +59,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ICanvas.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="IconSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
