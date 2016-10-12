@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace DiagramToolkit
 {
-    public interface IMenuItem
+    public interface ICommand
     {
-        string Text { get; set; }
-        void AddMenuItem(IMenuItem menuItem);
-        void SetCommand(ICommand command);
+        void Execute();
     }
 }

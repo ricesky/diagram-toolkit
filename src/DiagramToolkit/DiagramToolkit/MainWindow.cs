@@ -1,4 +1,5 @@
-﻿using DiagramToolkit.MenuItems;
+﻿using DiagramToolkit.Commands;
+using DiagramToolkit.MenuItems;
 using DiagramToolkit.ToolbarItems;
 using DiagramToolkit.Tools;
 using System.Diagnostics;
@@ -23,6 +24,20 @@ namespace DiagramToolkit
         {
             Debug.WriteLine("Initializing UI objects.");
 
+            #region Canvas
+            Debug.WriteLine("Loading canvas...");
+            this.canvas = new DefaultCanvas();
+            this.toolStripContainer1.ContentPanel.Controls.Add((Control)this.canvas);
+
+            #endregion
+
+            #region Commands
+
+            BlackCanvasBgCommand blackCanvasBgCmd = new BlackCanvasBgCommand(this.canvas);
+            WhiteCanvasBgCommand whiteCanvasBgCmd = new WhiteCanvasBgCommand(this.canvas);
+
+            #endregion
+
             #region Menubar
             Debug.WriteLine("Loading menubar...");
             this.menubar = new DefaultMenubar();
@@ -37,9 +52,11 @@ namespace DiagramToolkit
             DefaultMenuItem exampleMenuItem2 = new DefaultMenuItem("Edit");
             this.menubar.AddMenuItem(exampleMenuItem2);
 
-            DefaultMenuItem exampleMenuItem21 = new DefaultMenuItem("Cut");
+            DefaultMenuItem exampleMenuItem21 = new DefaultMenuItem("Change to Black");
+            exampleMenuItem21.SetCommand(blackCanvasBgCmd);
             exampleMenuItem2.AddMenuItem(exampleMenuItem21);
-            DefaultMenuItem exampleMenuItem22 = new DefaultMenuItem("Copy");
+            DefaultMenuItem exampleMenuItem22 = new DefaultMenuItem("Change to White");
+            exampleMenuItem22.SetCommand(whiteCanvasBgCmd);
             exampleMenuItem2.AddMenuItem(exampleMenuItem22);
 
             #endregion
@@ -69,19 +86,16 @@ namespace DiagramToolkit
             this.toolbar = new DefaultToolbar();
             this.toolStripContainer1.TopToolStripPanel.Controls.Add((Control)this.toolbar);
 
-            this.toolbar.AddToolbarItem(new ExampleToolbarItem());
+            ExampleToolbarItem toolItem1 = new ExampleToolbarItem();
+            toolItem1.SetCommand(whiteCanvasBgCmd);
+            ExampleToolbarItem toolItem2 = new ExampleToolbarItem();
+            toolItem2.SetCommand(blackCanvasBgCmd);
+
+            this.toolbar.AddToolbarItem(toolItem1);
             this.toolbar.AddSeparator();
-            this.toolbar.AddToolbarItem(new ExampleToolbarItem());
+            this.toolbar.AddToolbarItem(toolItem2);
 
             #endregion
-
-            #region Canvas
-            Debug.WriteLine("Loading canvas...");
-            this.canvas = new DefaultCanvas();
-            this.toolStripContainer1.ContentPanel.Controls.Add((Control)this.canvas);
-
-            #endregion
-
 
         }
 

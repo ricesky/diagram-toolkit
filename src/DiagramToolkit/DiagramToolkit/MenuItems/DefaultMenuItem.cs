@@ -5,13 +5,25 @@ namespace DiagramToolkit.MenuItems
 {
     public class DefaultMenuItem : ToolStripMenuItem, IMenuItem
     {
+        private ICommand command;
+
         public DefaultMenuItem()
         {
             this.Name = "exampleToolStripMenuItem";
             this.Size = new System.Drawing.Size(37, 20);
+
+            this.Click += DefaultMenuItem_Click;
         }
 
-        public DefaultMenuItem(string text) : base()
+        private void DefaultMenuItem_Click(object sender, EventArgs e)
+        {
+            if (command != null)
+            {
+                this.command.Execute();
+            }
+        }
+
+        public DefaultMenuItem(string text) : this()
         {
             this.Text = text;
         }
@@ -19,6 +31,11 @@ namespace DiagramToolkit.MenuItems
         public void AddMenuItem(IMenuItem menuItem)
         {
             this.DropDownItems.Add((ToolStripMenuItem)menuItem);
+        }
+
+        public void SetCommand(ICommand command)
+        {
+            this.command = command;
         }
     }
 }
