@@ -43,21 +43,30 @@ namespace DiagramToolkit
             this.menubar = new DefaultMenubar();
             this.Controls.Add((Control)this.menubar);
 
-            DefaultMenuItem exampleMenuItem1 = new DefaultMenuItem("File");
-            this.menubar.AddMenuItem(exampleMenuItem1);
+            DefaultMenuItem fileMenuItem = new DefaultMenuItem("File");
+            this.menubar.AddMenuItem(fileMenuItem);
 
-            DefaultMenuItem exampleMenuItem11 = new DefaultMenuItem("New");
-            exampleMenuItem1.AddMenuItem(exampleMenuItem11);
+            DefaultMenuItem newMenuItem = new DefaultMenuItem("New");
+            fileMenuItem.AddMenuItem(newMenuItem);
+            DefaultMenuItem exitMenuItem = new DefaultMenuItem("Exit");
+            fileMenuItem.AddMenuItem(exitMenuItem);
 
-            DefaultMenuItem exampleMenuItem2 = new DefaultMenuItem("Edit");
-            this.menubar.AddMenuItem(exampleMenuItem2);
+            DefaultMenuItem editMenuItem = new DefaultMenuItem("Edit");
+            this.menubar.AddMenuItem(editMenuItem);
 
-            DefaultMenuItem exampleMenuItem21 = new DefaultMenuItem("Change to Black");
-            exampleMenuItem21.SetCommand(blackCanvasBgCmd);
-            exampleMenuItem2.AddMenuItem(exampleMenuItem21);
-            DefaultMenuItem exampleMenuItem22 = new DefaultMenuItem("Change to White");
-            exampleMenuItem22.SetCommand(whiteCanvasBgCmd);
-            exampleMenuItem2.AddMenuItem(exampleMenuItem22);
+            DefaultMenuItem undoMenuItem = new DefaultMenuItem("Undo");
+            editMenuItem.AddMenuItem(undoMenuItem);
+            DefaultMenuItem redoMenuItem = new DefaultMenuItem("Redo");
+            editMenuItem.AddMenuItem(redoMenuItem);
+
+            DefaultMenuItem viewMenuItem = new DefaultMenuItem("View");
+            this.menubar.AddMenuItem(viewMenuItem);
+
+            DefaultMenuItem helpMenuItem = new DefaultMenuItem("Help");
+            this.menubar.AddMenuItem(helpMenuItem);
+
+            DefaultMenuItem aboutMenuItem = new DefaultMenuItem("About");
+            helpMenuItem.AddMenuItem(aboutMenuItem);
 
             #endregion
 
