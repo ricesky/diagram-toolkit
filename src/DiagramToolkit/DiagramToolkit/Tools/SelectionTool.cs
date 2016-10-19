@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +7,7 @@ using System.Windows.Forms;
 
 namespace DiagramToolkit.Tools
 {
-    public class ExampleTool : ToolStripButton, ITool
+    public class SelectionTool : ToolStripButton, ITool
     {
         private ICanvas canvas;
 
@@ -16,7 +15,7 @@ namespace DiagramToolkit.Tools
         {
             get
             {
-                return Cursors.Cross;
+                return Cursors.Arrow;
             }
         }
 
@@ -33,48 +32,27 @@ namespace DiagramToolkit.Tools
             }
         }
 
-        public ExampleTool()
+        public SelectionTool()
         {
-            this.Name = "Example tool";
-            this.ToolTipText = "Example tool";
-            Debug.WriteLine(this.Name + " is initialized.");
-            Init();
-        }
-
-        private void Init()
-        {
-            this.Image = IconSet.pixel;
+            this.Name = "Selection tool";
+            this.ToolTipText = "Selection tool";
+            this.Image = IconSet.cursor;
             this.CheckOnClick = true;
-        }
-
-        public void ToolHotKeysDown(object sender, Keys e)
-        {
-            
-        }
-
-        public void ToolKeyDown(object sender, KeyEventArgs e)
-        {
-            
-        }
-
-        public void ToolKeyUp(object sender, KeyEventArgs e)
-        {
-            
         }
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-            MessageBox.Show("Example tool clicked", "Example Tool");
+            throw new NotImplementedException();
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
-            
+            throw new NotImplementedException();
         }
 
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }
