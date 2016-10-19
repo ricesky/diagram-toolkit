@@ -10,6 +10,7 @@ namespace DiagramToolkit
     {
         string Text { get; set; }
         void AddMenuItem(IMenuItem menuItem);
+        void AddSeparator();
         void SetCommand(ICommand command);
     }
 }

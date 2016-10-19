@@ -17,14 +17,15 @@ namespace DiagramToolkit
         public MainWindow()
         {
             InitializeComponent();
-            InitForm();
+            InitUI();
         }
 
-        private void InitForm()
+        private void InitUI()
         {
             Debug.WriteLine("Initializing UI objects.");
 
             #region Canvas
+
             Debug.WriteLine("Loading canvas...");
             this.canvas = new DefaultCanvas();
             this.toolStripContainer1.ContentPanel.Controls.Add((Control)this.canvas);
@@ -39,6 +40,7 @@ namespace DiagramToolkit
             #endregion
 
             #region Menubar
+
             Debug.WriteLine("Loading menubar...");
             this.menubar = new DefaultMenubar();
             this.Controls.Add((Control)this.menubar);
@@ -48,6 +50,7 @@ namespace DiagramToolkit
 
             DefaultMenuItem newMenuItem = new DefaultMenuItem("New");
             fileMenuItem.AddMenuItem(newMenuItem);
+            fileMenuItem.AddSeparator();
             DefaultMenuItem exitMenuItem = new DefaultMenuItem("Exit");
             fileMenuItem.AddMenuItem(exitMenuItem);
 
@@ -83,13 +86,16 @@ namespace DiagramToolkit
 
             // Initializing tools
             Debug.WriteLine("Loading tools...");
-            this.toolbox.AddTool(new ExampleTool());
-            this.toolbox.AddTool(new ExampleTool());
+            this.toolbox.AddTool(new SelectionTool());
+            this.toolbox.AddSeparator();
+            this.toolbox.AddTool(new LineTool());
+            this.toolbox.AddTool(new RectangleTool());
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
 
             #endregion
 
             #region Toolbar
+
             // Initializing toolbar
             Debug.WriteLine("Loading toolbar...");
             this.toolbar = new DefaultToolbar();
@@ -112,6 +118,7 @@ namespace DiagramToolkit
         {
             if (this.canvas != null)
             {
+                Debug.WriteLine("Tool " + tool.Name + " is selected");
                 this.canvas.SetActiveTool(tool);
                 tool.TargetCanvas = this.canvas;
             }

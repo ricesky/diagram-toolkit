@@ -48,6 +48,11 @@
   <ItemGroup>
     <Compile Include="Commands\BlackCanvasBgCommand.cs" />
     <Compile Include="Commands\WhiteCanvasBgCommand.cs" />
+    <Compile Include="CursorSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CursorSet.resx</DependentUpon>
+    </Compile>
     <Compile Include="DefaultCanvas.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -60,6 +65,7 @@
     <Compile Include="DefaultToolbox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DrawingObject.cs" />
     <Compile Include="ICanvas.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IconSet.Designer.cs">
@@ -79,17 +85,29 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="MenuItems\DefaultMenuItem.cs">
+    <Compile Include="DefaultMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shapes\LineSegment.cs" />
+    <Compile Include="Shapes\Rectangle.cs" />
     <Compile Include="ToolbarItems\ExampleToolbarItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Tools\ExampleTool.cs">
+    <Compile Include="Tools\LineTool.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Tools\RectangleTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\SelectionTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="CursorSet.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CursorSet.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="IconSet.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>IconSet.Designer.cs</LastGenOutput>
@@ -120,7 +138,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pixel.png" />
+    <None Include="Resources\bounding-box.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\diskette.png" />
@@ -130,6 +148,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\font.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cursor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MenuItems\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

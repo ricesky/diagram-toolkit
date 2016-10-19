@@ -33,6 +33,11 @@ namespace DiagramToolkit.MenuItems
             this.DropDownItems.Add((ToolStripMenuItem)menuItem);
         }
 
+        public void AddSeparator()
+        {
+            this.DropDownItems.Add(new ToolStripSeparator());
+        }
+
         public void SetCommand(ICommand command)
         {
             this.command = command;
