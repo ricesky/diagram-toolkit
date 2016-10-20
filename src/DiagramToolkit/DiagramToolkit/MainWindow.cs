@@ -89,7 +89,6 @@ namespace DiagramToolkit
             this.toolbox.AddTool(new SelectionTool());
             this.toolbox.AddSeparator();
             this.toolbox.AddTool(new LineTool());
-            this.toolbox.AddTool(new StatefulLineTool());
             this.toolbox.AddTool(new RectangleTool());
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
 

@@ -87,5 +87,10 @@ namespace DiagramToolkit
         {
             this.drawingObjects.Add(drawingObject);
         }
+
+        public void RemoveDrawingObject(DrawingObject drawingObject)
+        {
+            this.drawingObjects.Remove(drawingObject);
+        }
     }
 }

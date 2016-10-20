@@ -32,26 +32,47 @@ namespace DiagramToolkit.Tools
 
         public LineTool()
         {
-            this.Name = "Line tool";
-            this.ToolTipText = "Line tool";
+            this.Name = "Stateful Line tool";
+            this.ToolTipText = "Stateful Line tool";
             this.Image = IconSet.diagonal_line;
             this.CheckOnClick = true;
         }
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-            lineSegment = new LineSegment(new System.Drawing.Point(e.X, e.Y));
+            if (e.Button == MouseButtons.Left)
+            {
+                lineSegment = new LineSegment(new System.Drawing.Point(e.X, e.Y));
+                lineSegment.Endpoint = new System.Drawing.Point(e.X, e.Y);
+                canvas.AddDrawingObject(lineSegment);
+            }
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
-            //to be implemented
+            if (e.Button == MouseButtons.Left)
+            {
+                if (this.lineSegment != null)
+                {
+                    lineSegment.Endpoint = new System.Drawing.Point(e.X, e.Y);
+                }
+            }
         }
 
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
-            lineSegment.Endpoint = new System.Drawing.Point(e.X, e.Y);
-            canvas.AddDrawingObject(lineSegment);
+            if (this.lineSegment != null)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    lineSegment.Endpoint = new System.Drawing.Point(e.X, e.Y);
+                    lineSegment.Select();
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    canvas.RemoveDrawingObject(this.lineSegment);
+                }
+            }
         }
     }
 }

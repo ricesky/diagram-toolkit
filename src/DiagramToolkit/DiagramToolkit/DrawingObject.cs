@@ -14,6 +14,7 @@ namespace DiagramToolkit
         }
 
         public abstract void Draw();
+        public abstract bool Intersect(int xTest, int yTest);
 
     }
 }

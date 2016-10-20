@@ -14,6 +14,6 @@ namespace DiagramToolkit
         void SetBackgroundColor(Color color);
 
         void AddDrawingObject(DrawingObject drawingObject);
-
+        void RemoveDrawingObject(DrawingObject drawingObject);
     }
 }
