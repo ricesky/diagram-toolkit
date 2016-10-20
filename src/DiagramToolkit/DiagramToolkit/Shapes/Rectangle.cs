@@ -5,7 +5,7 @@ using System.Drawing.Drawing2D;
 
 namespace DiagramToolkit.Shapes
 {
-    public class Rectangle : StatefulDrawingObject
+    public class Rectangle : DrawingObject
     {
         public int X { get; set; }
         public int Y { get; set; }

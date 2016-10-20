@@ -5,7 +5,7 @@ using System.Drawing.Drawing2D;
 
 namespace DiagramToolkit.Shapes
 {
-    public class LineSegment : StatefulDrawingObject
+    public class LineSegment : DrawingObject
     {
         private const double EPSILON = 3.0;
 

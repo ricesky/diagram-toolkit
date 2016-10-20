@@ -92,5 +92,25 @@ namespace DiagramToolkit
         {
             this.drawingObjects.Remove(drawingObject);
         }
+
+        public DrawingObject SelectObjectAt(int x, int y)
+        {
+            foreach (DrawingObject obj in drawingObjects)
+            {
+                if (obj.Intersect(x, y))
+                {
+                    return obj;
+                }
+            }
+            return null;
+        }
+
+        public void DeselectAllObjects()
+        {
+            foreach (DrawingObject obj in drawingObjects)
+            {
+   
+            }
+        }
     }
 }

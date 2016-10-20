@@ -15,5 +15,8 @@ namespace DiagramToolkit
 
         void AddDrawingObject(DrawingObject drawingObject);
         void RemoveDrawingObject(DrawingObject drawingObject);
+
+        DrawingObject SelectObjectAt(int x, int y);
+        void DeselectAllObjects();
     }
 }
