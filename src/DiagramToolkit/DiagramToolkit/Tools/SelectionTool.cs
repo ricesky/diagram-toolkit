@@ -10,6 +10,9 @@ namespace DiagramToolkit.Tools
     public class SelectionTool : ToolStripButton, ITool
     {
         private ICanvas canvas;
+        private DrawingObject selectedObject;
+        private int xInitial;
+        private int yInitial;
 
         public Cursor Cursor
         {
@@ -42,18 +45,31 @@ namespace DiagramToolkit.Tools
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-            
+            this.xInitial = e.X;
+            this.yInitial = e.Y;
+
             if (e.Button == MouseButtons.Left && canvas != null)
             {
                 canvas.DeselectAllObjects();
-                canvas.SelectObjectAt(e.X, e.Y);
+                selectedObject = canvas.SelectObjectAt(e.X, e.Y);
             }
            
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
-            
+            if (e.Button == MouseButtons.Left && canvas != null)
+            {
+                if (selectedObject != null)
+                {
+                    int xAmount = e.X - xInitial;
+                    int yAmount = e.Y - yInitial;
+                    xInitial = e.X;
+                    yInitial = e.Y;
+
+                    selectedObject.Translate(e.X, e.Y, xAmount, yAmount);
+                }
+            }
         }
 
         public void ToolMouseUp(object sender, MouseEventArgs e)
