@@ -42,17 +42,23 @@ namespace DiagramToolkit.Tools
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            
+            if (e.Button == MouseButtons.Left && canvas != null)
+            {
+                canvas.DeselectAllObjects();
+                canvas.SelectObjectAt(e.X, e.Y);
+            }
+           
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

@@ -98,7 +98,7 @@ namespace DiagramToolkit
             this.drawingObjects.Remove(drawingObject);
         }
 
-        public DrawingObject SelectObjectAt(int x, int y)
+        public DrawingObject GetObjectAt(int x, int y)
         {
             foreach (DrawingObject obj in drawingObjects)
             {
@@ -110,14 +110,24 @@ namespace DiagramToolkit
             return null;
         }
 
-        public void DeselectAllObjects()
+        public DrawingObject SelectObjectAt(int x, int y)
         {
-            foreach (DrawingObject obj in drawingObjects)
+            DrawingObject obj = GetObjectAt(x, y);
+            if (obj != null)
             {
-   
+                obj.Select();
             }
+
+            return obj;
         }
 
+        public void DeselectAllObjects()
+        {
+            foreach (DrawingObject drawObj in drawingObjects)
+            {
+                drawObj.Deselect();
+            }
+        }
         
     }
 }

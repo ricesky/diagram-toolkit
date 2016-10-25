@@ -47,7 +47,15 @@ namespace DiagramToolkit.Shapes
 
         public override void RenderOnEditingView()
         {
-            RenderOnStaticView();
+            pen.Color = Color.Blue;
+            pen.Width = 1.5f;
+            pen.DashStyle = DashStyle.Solid;
+
+            if (this.Graphics != null)
+            {
+                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+            }
         }
 
         public override void RenderOnPreview()
