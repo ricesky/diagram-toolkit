@@ -78,6 +78,11 @@ namespace DiagramToolkit
             this.activeTool = tool;
         }
 
+        public ITool GetActiveTool()
+        {
+            return this.activeTool;
+        }
+
         public void SetBackgroundColor(Color color)
         {
             this.BackColor = color;
@@ -112,5 +117,7 @@ namespace DiagramToolkit
    
             }
         }
+
+        
     }
 }

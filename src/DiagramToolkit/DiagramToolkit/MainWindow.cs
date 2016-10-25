@@ -10,7 +10,7 @@ namespace DiagramToolkit
     public partial class MainWindow : Form
     {
         private IToolbox toolbox;
-        private ICanvas canvas;
+        private IEditor editor;
         private IToolbar toolbar;
         private IMenubar menubar;
 
@@ -24,18 +24,26 @@ namespace DiagramToolkit
         {
             Debug.WriteLine("Initializing UI objects.");
 
-            #region Canvas
+            #region Editor and Canvas
 
             Debug.WriteLine("Loading canvas...");
-            this.canvas = new DefaultCanvas();
-            this.toolStripContainer1.ContentPanel.Controls.Add((Control)this.canvas);
+            this.editor = new DefaultEditor();
+            this.toolStripContainer1.ContentPanel.Controls.Add((Control)this.editor);
+
+            ICanvas canvas1 = new DefaultCanvas();
+            canvas1.Name = "Untitled-1";
+            this.editor.AddCanvas(canvas1);
+
+            ICanvas canvas2 = new DefaultCanvas();
+            canvas2.Name = "Untitled-2";
+            this.editor.AddCanvas(canvas2);
 
             #endregion
 
             #region Commands
 
-            BlackCanvasBgCommand blackCanvasBgCmd = new BlackCanvasBgCommand(this.canvas);
-            WhiteCanvasBgCommand whiteCanvasBgCmd = new WhiteCanvasBgCommand(this.canvas);
+            //BlackCanvasBgCommand blackCanvasBgCmd = new BlackCanvasBgCommand(this.canvas);
+            //WhiteCanvasBgCommand whiteCanvasBgCmd = new WhiteCanvasBgCommand(this.canvas);
 
             #endregion
 
@@ -79,6 +87,7 @@ namespace DiagramToolkit
             Debug.WriteLine("Loading toolbox...");
             this.toolbox = new DefaultToolbox();
             this.toolStripContainer1.LeftToolStripPanel.Controls.Add((Control)this.toolbox);
+            this.editor.Toolbox = toolbox;
 
             #endregion
 
@@ -100,11 +109,11 @@ namespace DiagramToolkit
             Debug.WriteLine("Loading toolbar...");
             this.toolbar = new DefaultToolbar();
             this.toolStripContainer1.TopToolStripPanel.Controls.Add((Control)this.toolbar);
-
+            
             ExampleToolbarItem toolItem1 = new ExampleToolbarItem();
-            toolItem1.SetCommand(whiteCanvasBgCmd);
+            //toolItem1.SetCommand(whiteCanvasBgCmd);
             ExampleToolbarItem toolItem2 = new ExampleToolbarItem();
-            toolItem2.SetCommand(blackCanvasBgCmd);
+            //toolItem2.SetCommand(blackCanvasBgCmd);
 
             this.toolbar.AddToolbarItem(toolItem1);
             this.toolbar.AddSeparator();
@@ -116,11 +125,12 @@ namespace DiagramToolkit
 
         private void Toolbox_ToolSelected(ITool tool)
         {
-            if (this.canvas != null)
+            if (this.editor != null)
             {
                 Debug.WriteLine("Tool " + tool.Name + " is selected");
-                this.canvas.SetActiveTool(tool);
-                tool.TargetCanvas = this.canvas;
+                ICanvas canvas = this.editor.GetSelectedCanvas();
+                canvas.SetActiveTool(tool);
+                tool.TargetCanvas = canvas;
             }
         }
     }

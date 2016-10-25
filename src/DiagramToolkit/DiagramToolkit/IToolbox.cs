@@ -14,6 +14,6 @@ namespace DiagramToolkit
         void AddTool(ITool tool);
         void RemoveTool(ITool tool);
         void AddSeparator();
-        ITool ActiveTool { get; }
+        ITool ActiveTool { get; set; }
     }
 }

@@ -9,6 +9,8 @@ namespace DiagramToolkit
 {
     public interface ICanvas
     {
+        String Name { get; set; }
+        ITool GetActiveTool();
         void SetActiveTool(ITool tool);
         void Repaint();
         void SetBackgroundColor(Color color);
