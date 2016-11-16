@@ -86,5 +86,20 @@ namespace DiagramToolkit.Tools
             selectedObject.Add(text);
             Debug.WriteLine("selection tool double click");
         }
+
+        public void ToolKeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        public void ToolKeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        public void ToolHotKeysDown(object sender, Keys e)
+        {
+            
+        }
     }
 }

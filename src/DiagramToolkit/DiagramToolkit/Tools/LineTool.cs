@@ -77,7 +77,22 @@ namespace DiagramToolkit.Tools
 
         public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
         {
-                throw new NotImplementedException();
+             
+        }
+
+        public void ToolKeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        public void ToolKeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        public void ToolHotKeysDown(object sender, Keys e)
+        {
+           
         }
     }
 }
