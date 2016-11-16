@@ -49,8 +49,24 @@ namespace DiagramToolkit.Tools
             {
                 text = new Text();
                 text.Value = "Text";
-                text.Position = new System.Drawing.PointF(e.X, e.Y);
-                canvas.AddDrawingObject(text);
+                text.Position = new System.Drawing.PointF((float)e.X, (float)e.Y);
+
+                DrawingObject obj = canvas.SelectObjectAt(e.X, e.Y);
+
+                if (obj == null)
+                {
+                    canvas.AddDrawingObject(text);
+                }
+                else
+                {
+                    bool allowed = obj.Add(text);
+                    
+                    if (!allowed)
+                    {
+                        canvas.AddDrawingObject(text);
+                    }
+                }
+                    
             }
         }
         public void ToolMouseMove(object sender, MouseEventArgs e)

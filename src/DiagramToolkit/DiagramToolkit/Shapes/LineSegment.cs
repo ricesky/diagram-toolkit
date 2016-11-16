@@ -100,14 +100,14 @@ namespace DiagramToolkit.Shapes
             this.Endpoint = new Point(this.Endpoint.X + xAmount, this.Endpoint.Y + yAmount);
         }
 
-        public override void Add(DrawingObject obj)
+        public override bool Add(DrawingObject obj)
         {
-            //this.drawingObjects.Add(obj);
+            return false;
         }
 
-        public override void Remove(DrawingObject obj)
+        public override bool Remove(DrawingObject obj)
         {
-            //this.drawingObjects.Remove(obj);
+            return false;
         }
     }
 }

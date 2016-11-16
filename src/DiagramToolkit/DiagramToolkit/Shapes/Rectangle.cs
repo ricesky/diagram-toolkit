@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -13,11 +14,13 @@ namespace DiagramToolkit.Shapes
         public int Height { get; set; }
 
         private Pen pen;
+        private List<DrawingObject> drawingObjects;
 
         public Rectangle()
         {
             this.pen = new Pen(Color.Black);
             pen.Width = 1.5f;
+            drawingObjects = new List<DrawingObject>();
         }
 
         public Rectangle(int x, int y) : this()
@@ -47,6 +50,12 @@ namespace DiagramToolkit.Shapes
             this.pen.Color = Color.Black;
             this.pen.DashStyle = DashStyle.Solid;
             GetGraphics().DrawRectangle(this.pen, X, Y, Width, Height);
+
+            foreach (DrawingObject obj in drawingObjects)
+            {
+                obj.SetGraphics(GetGraphics());
+                obj.RenderOnStaticView();
+            }
         }
 
         public override void RenderOnEditingView()
@@ -54,6 +63,13 @@ namespace DiagramToolkit.Shapes
             this.pen.Color = Color.Blue;
             this.pen.DashStyle = DashStyle.Solid;
             GetGraphics().DrawRectangle(this.pen, X, Y, Width, Height);
+
+            foreach (DrawingObject obj in drawingObjects)
+            {
+                obj.SetGraphics(GetGraphics());
+                obj.RenderOnEditingView();
+            }
+
         }
 
         public override void RenderOnPreview()
@@ -61,22 +77,37 @@ namespace DiagramToolkit.Shapes
             this.pen.Color = Color.Red;
             this.pen.DashStyle = DashStyle.DashDot;
             GetGraphics().DrawRectangle(this.pen, X, Y, Width, Height);
+
+            foreach (DrawingObject obj in drawingObjects)
+            {
+                obj.SetGraphics(GetGraphics());
+                obj.RenderOnPreview();
+            }
         }
 
         public override void Translate(int x, int y, int xAmount, int yAmount)
         {
             this.X += xAmount;
             this.Y += yAmount;
+
+            foreach (DrawingObject obj in drawingObjects)
+            {
+                obj.Translate(x, y, xAmount, yAmount);
+            }
         }
 
-        public override void Add(DrawingObject obj)
+        public override bool Add(DrawingObject obj)
         {
-            throw new NotImplementedException();
+            drawingObjects.Add(obj);
+
+            return true;
         }
 
-        public override void Remove(DrawingObject obj)
+        public override bool Remove(DrawingObject obj)
         {
-            throw new NotImplementedException();
+            drawingObjects.Remove(obj);
+
+            return true;
         }
     }
 }

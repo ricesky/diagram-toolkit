@@ -22,14 +22,14 @@ namespace DiagramToolkit.Shapes
                GraphicsUnit.Pixel);
         }
 
-        public override void Add(DrawingObject obj)
+        public override bool Add(DrawingObject obj)
         {
-            //do nothing
+            return false;
         }
 
-        public override void Remove(DrawingObject obj)
+        public override bool Remove(DrawingObject obj)
         {
-            //do nothing
+            return false;
         }
 
         public override bool Intersect(int xTest, int yTest)

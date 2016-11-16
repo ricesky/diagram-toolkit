@@ -27,8 +27,8 @@ namespace DiagramToolkit
             this.ChangeState(PreviewState.GetInstance()); //default initial state
         }
 
-        public abstract void Add(DrawingObject obj);
-        public abstract void Remove(DrawingObject obj);
+        public abstract bool Add(DrawingObject obj);
+        public abstract bool Remove(DrawingObject obj);
         
         public abstract bool Intersect(int xTest, int yTest);
         public abstract void Translate(int x, int y, int xAmount, int yAmount);
