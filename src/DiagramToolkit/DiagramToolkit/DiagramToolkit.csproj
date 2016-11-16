@@ -113,6 +113,9 @@
     <Compile Include="Tools\SelectionTool.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Tools\TextTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="CursorSet.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CursorSet.Designer.cs</LastGenOutput>

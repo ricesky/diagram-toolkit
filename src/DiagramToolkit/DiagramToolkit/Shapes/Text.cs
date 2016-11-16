@@ -45,22 +45,22 @@ namespace DiagramToolkit.Shapes
 
         public override void RenderOnEditingView()
         {
-            Graphics.DrawString(Value, font, brush, Position);
+            GetGraphics().DrawString(Value, font, brush, Position);
         }
 
         public override void RenderOnPreview()
         {
-            Graphics.DrawString(Value, font, brush, Position);
+            GetGraphics().DrawString(Value, font, brush, Position);
         }
 
         public override void RenderOnStaticView()
         {
-            Graphics.DrawString(Value, font, brush, Position);
+            GetGraphics().DrawString(Value, font, brush, Position);
         }
 
         public override void Translate(int x, int y, int xAmount, int yAmount)
         {
-            //throw new NotImplementedException();
+            Position = new PointF(Position.X + xAmount, Position.Y + yAmount);
         }
     }
 }

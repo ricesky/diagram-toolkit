@@ -72,7 +72,7 @@ namespace DiagramToolkit
         {
             foreach (DrawingObject obj in drawingObjects)
             {
-                obj.Graphics = e.Graphics;
+                obj.SetGraphics(e.Graphics);
                 obj.Draw();
             }
         }

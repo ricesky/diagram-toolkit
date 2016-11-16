@@ -99,6 +99,7 @@ namespace DiagramToolkit
             this.toolbox.AddSeparator();
             this.toolbox.AddTool(new LineTool());
             this.toolbox.AddTool(new RectangleTool());
+            this.toolbox.AddTool(new TextTool());
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
 
             #endregion

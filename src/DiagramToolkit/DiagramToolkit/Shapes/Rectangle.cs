@@ -46,21 +46,21 @@ namespace DiagramToolkit.Shapes
         {
             this.pen.Color = Color.Black;
             this.pen.DashStyle = DashStyle.Solid;
-            Graphics.DrawRectangle(this.pen, X, Y, Width, Height);
+            GetGraphics().DrawRectangle(this.pen, X, Y, Width, Height);
         }
 
         public override void RenderOnEditingView()
         {
             this.pen.Color = Color.Blue;
             this.pen.DashStyle = DashStyle.Solid;
-            Graphics.DrawRectangle(this.pen, X, Y, Width, Height);
+            GetGraphics().DrawRectangle(this.pen, X, Y, Width, Height);
         }
 
         public override void RenderOnPreview()
         {
             this.pen.Color = Color.Red;
             this.pen.DashStyle = DashStyle.DashDot;
-            Graphics.DrawRectangle(this.pen, X, Y, Width, Height);
+            GetGraphics().DrawRectangle(this.pen, X, Y, Width, Height);
         }
 
         public override void Translate(int x, int y, int xAmount, int yAmount)
