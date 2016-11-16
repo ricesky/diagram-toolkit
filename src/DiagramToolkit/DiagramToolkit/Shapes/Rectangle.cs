@@ -68,5 +68,15 @@ namespace DiagramToolkit.Shapes
             this.X += xAmount;
             this.Y += yAmount;
         }
+
+        public override void Add(DrawingObject obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Remove(DrawingObject obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
