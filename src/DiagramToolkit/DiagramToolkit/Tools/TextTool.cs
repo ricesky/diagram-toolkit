@@ -49,8 +49,9 @@ namespace DiagramToolkit.Tools
             {
                 text = new Text();
                 text.Value = "Text";
-                text.Position = new System.Drawing.PointF((float)e.X, (float)e.Y);
-
+                text.X = e.X;
+                text.Y = e.Y;
+                
                 DrawingObject obj = canvas.SelectObjectAt(e.X, e.Y);
 
                 if (obj == null)
