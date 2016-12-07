@@ -45,6 +45,23 @@ namespace DiagramToolkit
             }
         }
 
+        public void Register(IPlugin plugin)
+        {
+            if (plugin != null)
+            {
+                Debug.WriteLine("Loading plugin: " + plugin.Name + "...");
+
+                if (plugin is ITool)
+                {
+                    ITool pluginTool = (ITool)plugin;
+                    AddTool(pluginTool);
+                }
+
+                Debug.WriteLine("Plugin " + plugin.Name + " is loaded successfuly.");
+            }
+            
+        }
+
         public void RemoveTool(ITool tool)
         {
             foreach (ToolStripItem i in this.Items)

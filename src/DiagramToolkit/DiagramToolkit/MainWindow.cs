@@ -4,6 +4,9 @@ using DiagramToolkit.ToolbarItems;
 using DiagramToolkit.Tools;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace DiagramToolkit
 {
@@ -13,11 +16,64 @@ namespace DiagramToolkit
         private IEditor editor;
         private IToolbar toolbar;
         private IMenubar menubar;
+        private IPlugin[] plugins;
 
         public MainWindow()
         {
             InitializeComponent();
+            LoadPlugins();
             InitUI();
+            
+        }
+
+        private void LoadPlugins()
+        {
+            //\\Mac\Home\git\diagram-toolkit\src\DiagramToolkit\DiagramToolkit\bin\Debug
+            string path = Application.StartupPath;
+            
+            string[] pluginFiles = Directory.GetFiles(path, "*.DLL");
+            plugins = new IPlugin[pluginFiles.Length];
+
+            for (int i = 0; i < pluginFiles.Length; i++)
+            {
+                string args = pluginFiles[i].Substring(
+                    pluginFiles[i].LastIndexOf("\\") + 1,
+                    pluginFiles[i].IndexOf(".dll") -
+                    pluginFiles[i].LastIndexOf("\\") - 1);
+
+                Type type = null;
+
+                try
+                {
+                    Assembly asm = Assembly.Load(args);
+
+                    if (asm != null)
+                    {
+                        var pluginInterface = typeof(IPlugin);
+
+                        Type[] types = asm.GetTypes();
+
+                        foreach (Type t in types)
+                        {
+                            if (pluginInterface.IsAssignableFrom(t))
+                                type = t;
+                        }
+
+                    }
+
+                    if (type != null)
+                    {
+                        plugins[i] = (IPlugin)Activator.CreateInstance(type);
+                        //plugins[i].Host = this;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+             
+            }
         }
 
         private void InitUI()
@@ -99,8 +155,18 @@ namespace DiagramToolkit
             this.toolbox.AddSeparator();
             this.toolbox.AddTool(new LineTool());
             this.toolbox.AddTool(new RectangleTool());
-            this.toolbox.AddTool(new TextTool());
+
+            if (plugins != null)
+            {
+                for (int i = 0; i < this.plugins.Length; i++)
+                {
+                    this.toolbox.Register(plugins[i]);
+                }
+            }
+
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
+
+
 
             #endregion
 
@@ -134,5 +200,6 @@ namespace DiagramToolkit
                 tool.TargetCanvas = canvas;
             }
         }
+
     }
 }
