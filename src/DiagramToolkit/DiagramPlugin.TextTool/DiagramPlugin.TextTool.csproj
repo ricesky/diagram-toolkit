@@ -48,6 +48,7 @@
       <DependentUpon>IconSet.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Text.cs" />
     <Compile Include="TextTool.cs">
       <SubType>Component</SubType>
     </Compile>

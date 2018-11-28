@@ -1,7 +1,8 @@
-﻿using System.Diagnostics;
+﻿using DiagramToolkit;
+using System.Diagnostics;
 using System.Drawing;
 
-namespace DiagramToolkit.Shapes
+namespace DiagramPlugin.Shapes
 {
     public class Text : DrawingObject
     {

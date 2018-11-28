@@ -1,5 +1,5 @@
 ﻿using DiagramToolkit;
-using DiagramToolkit.Shapes;
+using DiagramPlugin.Shapes;
 using System;
 using System.Windows.Forms;
 
